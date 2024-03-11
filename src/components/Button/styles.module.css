@@ -1,0 +1,20 @@
+.button {
+  width: 240px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+.defaultButton {
+  background-color: var(--pink-500);
+  color: var(--white);
+}
+
+.outlineButton {
+  border: 2px solid var(--pink-500);
+  background-color: transparent;
+  color: var(--pink-500);
+}
