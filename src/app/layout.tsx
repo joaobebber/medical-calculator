@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
+import { AuthProvider } from '@/contexts/AuthContext'
+
 import { poppins } from './fonts'
 import styles from './styles.module.css'
+
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,13 +19,15 @@ interface LayoutProps {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
-        <header className={styles.header}>
-          <h1>Pediatria</h1>
-        </header>
+      <AuthProvider>
+        <body className={poppins.className}>
+          <header className={styles.header}>
+            <h1>Pediatria</h1>
+          </header>
 
-        {children}
-      </body>
+          {children}
+        </body>
+      </AuthProvider>
     </html>
   )
 }
