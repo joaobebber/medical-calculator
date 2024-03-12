@@ -9,8 +9,10 @@ export function handleDosageCalc({ concentracao, diluicao, dosesDiarias, peso, p
 
   const roundedDosage = Math.round(mlPerDose * 100) / 100
 
+  const roundedPeriod = Math.round(doseGap * 100) / 100
+
   return {
     dosage: roundedDosage,
-    period: doseGap,
+    period: roundedPeriod,
   }
 }

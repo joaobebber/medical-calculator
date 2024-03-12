@@ -1,17 +1,3 @@
-.form {
-  /* Display and Visibility */
-  display: flex;
-  /* Position and Layout */
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.form button {
-  /* Box Model */
-  margin-top: 16px;
-}
-
 .backButton {
   /* Box Model */
   margin-top: 8px;
