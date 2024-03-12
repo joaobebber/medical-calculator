@@ -5,16 +5,18 @@ import styles from './styles.module.css'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
+  number: boolean,
   unit: string
 }
 
-export function Input({ name, unit, ...props}: InputProps) {
+export function Input({ name, number, unit, ...props}: InputProps) {
   const { register } = useFormContext()
 
   return (
     <div className={styles.inputWrapper}>
       <input 
         id={name}
+        {...(number && { type: 'text', inputMode: 'numeric' })}
         {...register(name)} 
         {...props}
       />

@@ -37,31 +37,31 @@ export default function Dosage() {
         <form onSubmit={handleSubmit(dosageCalc)} className={styles.form} autoComplete='off'>
           <Form.Field>
             <Form.Label htmlFor='posologia'>Posologia</Form.Label>
-            <Form.Input type='number' name='posologia' placeholder='70' unit="mg/kg.dia" />
+            <Form.Input number name='posologia' placeholder='70' unit="mg/kg.dia" />
             <Form.ErrorMessage field='posologia' />
           </Form.Field>
 
           <Form.Field>
             <Form.Label htmlFor='dosesDiarias'>Doses Diárias</Form.Label>
-            <Form.Input type='number' name='dosesDiarias' placeholder='3' unit="doses/dia" />
+            <Form.Input number name='dosesDiarias' placeholder='3' unit="doses/dia" />
             <Form.ErrorMessage field='dosesDiarias' />
           </Form.Field>
 
           <Form.Field>
             <Form.Label htmlFor='peso'>Peso</Form.Label>
-            <Form.Input type='number' name='peso' placeholder='10' unit="kg" />
+            <Form.Input number name='peso' placeholder='10' unit="kg" />
             <Form.ErrorMessage field='peso' />
           </Form.Field>
 
           <Form.Field>
             <Form.Label htmlFor='concentracao'>Concentração</Form.Label>
-            <Form.Input type='number' name='concentracao' placeholder='1000' unit="mg/ampola" />
+            <Form.Input number name='concentracao' placeholder='1000' unit="mg/ampola" />
             <Form.ErrorMessage field='concentracao' />
           </Form.Field>
 
           <Form.Field>
             <Form.Label htmlFor='diluicao'>Diluição</Form.Label>
-            <Form.Input type='number' name='diluicao' placeholder='4' unit="ml" />
+            <Form.Input number name='diluicao' placeholder='4' unit="ml" />
             <Form.ErrorMessage field='diluicao' />
           </Form.Field>
 

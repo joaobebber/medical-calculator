@@ -3,6 +3,7 @@
   display: flex;
   /* Position and Layout */
   position: fixed;
+  z-index: 100;
   justify-content: center;
   align-items: center;
   /* Box Model */
