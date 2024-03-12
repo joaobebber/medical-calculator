@@ -34,7 +34,7 @@ export default function Dosage() {
 
   return (
     <Container>
-      <Title text="Dosagem" />
+      <Title>Dosagem</Title>
 
       <FormProvider {...dosageCalcForm}>
         <Form.Root

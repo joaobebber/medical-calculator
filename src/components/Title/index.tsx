@@ -1,13 +1,13 @@
 import styles from './styles.module.css'
 
 interface TitleProps {
-  text: string
+  children: React.ReactNode
 }
 
-export function Title({ text }: TitleProps) {
+export function Title({ children }: TitleProps) {
   return (
     <h1 className={styles.title}>
-      {text}
+      {children}
     </h1>
   )
 }

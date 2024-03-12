@@ -5,8 +5,8 @@ import styles from './styles.module.css'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string
-  number: boolean,
-  unit: string
+  number?: boolean,
+  unit?: string
 }
 
 export function Input({ name, number, unit, ...props}: InputProps) {
@@ -20,7 +20,7 @@ export function Input({ name, number, unit, ...props}: InputProps) {
         {...register(name)} 
         {...props}
       />
-      <span>{unit}</span>
+      {unit && <span>{unit}</span>}
     </div>
   )
 }

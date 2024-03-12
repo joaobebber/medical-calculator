@@ -7,7 +7,7 @@ import { Title } from '@/components/Title'
 export default function Home() {
   return (
     <Container>
-      <Title text="Escolha a categoria" />
+      <Title>Escolha a categoria</Title>
 
       <Link href="/dosage">
         <Button>Dosagem</Button>
