@@ -1,4 +1,4 @@
-import styles from "./styles.module.css";
+import styles from './styles.module.css'
 
 interface TitleProps {
   text: string
@@ -6,6 +6,8 @@ interface TitleProps {
 
 export function Title({ text }: TitleProps) {
   return (
-    <h1 className={styles.title}>{ text }</h1>
+    <h1 className={styles.title}>
+      {text}
+    </h1>
   )
 }

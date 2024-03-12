@@ -1,20 +1,28 @@
 .button {
+  /* Box Model */
   width: 240px;
   padding: 8px 16px;
+  /* Box Style */
   border-radius: 12px;
+  /* Typography */
   font-weight: 600;
   font-size: 16px;
-  letter-spacing: 0.5px;
   line-height: 1.5;
+  letter-spacing: 0.5px;
 }
 
-.defaultButton {
+.default {
+  /* Background */
   background-color: var(--pink-500);
+  /* Typography */
   color: var(--white);
 }
 
-.outlineButton {
+.outline {
+  /* Box Style */
   border: 2px solid var(--pink-500);
+  /* Background */
   background-color: transparent;
+  /* Typography */
   color: var(--pink-500);
 }

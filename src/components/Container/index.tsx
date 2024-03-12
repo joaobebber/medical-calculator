@@ -6,7 +6,7 @@ interface ContainerProps {
 
 export function Container({ children }: ContainerProps) {
   return (
-    <main className={styles.container}>
+    <main className={styles.pageWrapper}>
       {children}
     </main>
   )

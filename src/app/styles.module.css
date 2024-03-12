@@ -1,0 +1,20 @@
+.header {
+  /* Display and Visibility */
+  display: flex;
+  /* Position and Layout */
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  /* Box Model */
+  width: 100%;
+  height: 64px;
+  /* Background */
+  background-color: var(--pink-500);
+}
+
+.header h1 {
+  /* Typography */
+  font-weight: 500;
+  font-size: 24px;
+  color: var(--white);
+}

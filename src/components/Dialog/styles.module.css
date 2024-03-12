@@ -1,44 +1,57 @@
 .overlay {
-  background-color: var(--neutral-500);
+  /* Display and Visibility */
   opacity: 75%;
-  position: fixed;
-  margin-top: 64px;
-  inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Position and Layout */
+  position: fixed;
+  inset: 0;
+  /* Box Model */
+  margin-top: 64px;
+  /* Background */
+  background-color: var(--neutral-500);
 }
 
 .content {
+  /* Display and Visibility */
   display: flex;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Position and Layout */
+  position: fixed;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* Box Model */
   width: 90vw;
   max-width: 450px;
   max-height: 85vh;
   padding: 25px;
-  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* Box Style */
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  /* Background */
+  background-color: white;
 }
 .content:focus {
+  /* Box Style */
   outline: none;
 }
 
 .title {
+  /* Typography */
   font-weight: 500;
-  color: var(--black);
   font-size: 20px;
+  color: var(--black);
 }
 
 .description {
+  /* Box Model */
   margin: 16px 0 24px;
-  color: var(--black);
+  /* Typography */
   font-size: 16px;
   line-height: 1.5;
+  color: var(--black);
 }
 
 @keyframes overlayShow {

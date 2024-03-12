@@ -1,65 +1,89 @@
 'use client'
 
-import { useEffect, useState } from "react";
-import { useFormState } from "react-dom";
+import Link from 'next/link'
+import { useState } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 
-import { calculateDosage } from "@/app/actions";
-import { Button } from "@/components/Button";
-import { Container } from "@/components/Container";
-import { Dialog } from "@/components/Dialog";
-import { Header } from "@/components/Header";
-import { Input } from "@/components/Input";
-import { Title } from "@/components/Title";
+import { Button } from '@/components/Button'
+import { Container } from '@/components/Container'
+import { Dialog } from '@/components/Dialog'
+import { Form } from '@/components/Form'
+import { Title } from '@/components/Title'
+import { handleDosageCalc } from '@/utils/handleDosageCalc'
 
-import styles from "./page.module.css";
-import Link from "next/link";
-
-const initialState = {
-  dosage: 0,
-  period: 0,
-  errors: '' as any,
-}
+import { DosageCalcData, resolver } from './data-validation'
+import styles from './page.module.css'
 
 export default function Dosage() {
   const [dosage, setDosage] = useState<number>()
   const [period, setPeriod] = useState<number>()
-  
-  const [state, formAction] = useFormState(calculateDosage, initialState)
 
-  useEffect(() =>{
-    setDosage(state.dosage)
-    setPeriod(state.period)
-  }, [state.dosage, state.period])
+  const dosageCalcForm = useForm<DosageCalcData>({ resolver })
+
+  const { handleSubmit, formState: { isSubmitting } } = dosageCalcForm
+
+  function dosageCalc(data: DosageCalcData) {
+    const { dosage, period } = handleDosageCalc(data)
+
+    setDosage(dosage)
+    setPeriod(period)
+  }
 
   return (
     <Container>
-      <Header title="Pediatria" />
-
       <Title text="Dosagem" />
 
-      <form action={formAction} className={styles.form} autoComplete="off">
-        <Input title="Posologia" placeholder="70" unit="mg/kg.dia" />
-        <Input title="Doses ao dia" placeholder="3" unit="doses/dia" />
-        <Input title="Peso" placeholder="10" unit="kg" />
-        <Input title="Concentração" placeholder="1000" unit="mg/ampola" />
-        <Input title="Diluição" placeholder="4" unit="ml" />
+      <FormProvider {...dosageCalcForm}>
+        <form onSubmit={handleSubmit(dosageCalc)} className={styles.form} autoComplete='off'>
+          <Form.Field>
+            <Form.Label htmlFor='posologia'>Posologia</Form.Label>
+            <Form.Input type='number' name='posologia' placeholder='70' unit="mg/kg.dia" />
+            <Form.ErrorMessage field='posologia' />
+          </Form.Field>
 
-        <Dialog
-          title="Aplicação"
-          description={`${dosage} ml a cada ${period} horas`}
-        >
-          <Button type="submit">Calcular</Button>
-        </Dialog>
+          <Form.Field>
+            <Form.Label htmlFor='dosesDiarias'>Doses Diárias</Form.Label>
+            <Form.Input type='number' name='dosesDiarias' placeholder='3' unit="doses/dia" />
+            <Form.ErrorMessage field='dosesDiarias' />
+          </Form.Field>
 
-        {/* ERROR HANDLING */}
-        {state.errors && <p>Erros: {JSON.stringify(state.errors)}</p>}
-      </form>
+          <Form.Field>
+            <Form.Label htmlFor='peso'>Peso</Form.Label>
+            <Form.Input type='number' name='peso' placeholder='10' unit="kg" />
+            <Form.ErrorMessage field='peso' />
+          </Form.Field>
 
-      <Link href="/">
-        <Button variant="Outline" style={{ marginTop: '8px' }}>
-          Voltar
-        </Button>
+          <Form.Field>
+            <Form.Label htmlFor='concentracao'>Concentração</Form.Label>
+            <Form.Input type='number' name='concentracao' placeholder='1000' unit="mg/ampola" />
+            <Form.ErrorMessage field='concentracao' />
+          </Form.Field>
+
+          <Form.Field>
+            <Form.Label htmlFor='diluicao'>Diluição</Form.Label>
+            <Form.Input type='number' name='diluicao' placeholder='4' unit="ml" />
+            <Form.ErrorMessage field='diluicao' />
+          </Form.Field>
+
+          <Dialog.Root>
+            <Dialog.Trigger>
+              <Button type='submit' disabled={isSubmitting}>Calcular</Button>
+            </Dialog.Trigger>
+
+            <Dialog.Content>
+              <Dialog.Title>Aplicação</Dialog.Title>
+              <Dialog.Description>{dosage} ml a cada {period} horas</Dialog.Description>
+              <Dialog.Close>
+                <Button type='button'>OK</Button>
+              </Dialog.Close>
+            </Dialog.Content>
+          </Dialog.Root>
+        </form>
+      </FormProvider>
+
+      <Link href="/" className={styles.backButton}>
+        <Button variant="Outline">Voltar</Button>
       </Link>
     </Container>
-  );
+  )
 }
