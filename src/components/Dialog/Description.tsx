@@ -1,9 +1,11 @@
+import { ReactNode } from 'react'
+
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import styles from './styles.module.css'
 
 interface DescriptionProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export function Description({ children }: DescriptionProps) {

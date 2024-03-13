@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { ReactNode } from 'react'
 
 import { AuthProvider } from '@/contexts/AuthContext'
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function RootLayout({ children }: LayoutProps) {

@@ -1,8 +1,8 @@
-import { forwardRef } from 'react'
+import { ButtonHTMLAttributes, forwardRef } from 'react'
 
 import styles from './styles.module.css'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'Default' | 'Outline'
 }
 
