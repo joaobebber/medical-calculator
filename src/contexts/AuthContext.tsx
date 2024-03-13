@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import { parseCookies, setCookie } from 'nookies'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
+import { api } from '@/services/api'
+
 interface User {
   name: string
   email: string
@@ -64,6 +66,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setCookie(undefined, '@medcalc.token', token, {
       maxAge: 60 * 60 * 1, // 1 hour
     })
+
+    api.defaults.headers['Authorization'] = `Bearer ${token}`
 
     setUser(user)
 

@@ -19,8 +19,6 @@ export default function Login() {
   const { handleSubmit, formState: { isSubmitting } } = loginForm
 
   async function handleLogin({ email, password }: LoginData) {
-    console.log('Email: ', email, ' Password: ', password)
-
     // Fazer tratativa de erros (retorno do backend)
     await signIn({ email, password })
   }
