@@ -1,16 +1,11 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { parseCookies, setCookie } from 'nookies'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
-import { api } from '@/services/api'
-
-interface User {
-  name: string
-  email: string
-  avatarUrl: string
-}
+import { userProvider } from '@/actions/userProvider'
+import { login } from '@/api/requests/login'
+import { User } from '@/interfaces/User'
 
 interface SignInData {
   email: string
@@ -36,38 +31,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const isAuthenticated = !!user
 
   useEffect(() => {
-    const { '@medcalc.token': token } = parseCookies()
+    const provideUser = async () => {
+      const user = await userProvider()
 
-    if (token) {
-      // Chamada para a API para obter dados de usuário ***
-      const user = {
-        name: 'João Bebber',
-        email: 'joao.gbebber@gmail.com',
-        avatarUrl: 'https://github.com/JoaoBebber.png'
-      }
-      // ***
-
-      setUser(user)
+      if (user) setUser(user)
     }
+
+    provideUser()
   }, [])
 
   async function signIn({ email, password }: SignInData) {
-    // Chamada para a API para obter o JWT ***
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _unused = { email, password }
-    const token = '14c51189-9591-441c-a4b7-8865e5fcdff8'
-    const user = {
-      name: 'João Bebber',
-      email: 'joao.gbebber@gmail.com',
-      avatarUrl: 'https://github.com/JoaoBebber.png'
-    }
-    // ***
-
-    setCookie(undefined, '@medcalc.token', token, {
-      maxAge: 60 * 60 * 1, // 1 hour
-    })
-
-    api.defaults.headers['Authorization'] = `Bearer ${token}`
+    const user = await login({ email, password })
 
     setUser(user)
 

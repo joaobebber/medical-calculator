@@ -13,13 +13,13 @@ import { LoginData, resolver } from './data-validation'
 import styles from './page.module.css'
 
 export default function Login() {
-  const loginForm = useForm<LoginData>({ resolver })
   const { signIn } = useContext(AuthContext)
+
+  const loginForm = useForm<LoginData>({ resolver })
 
   const { handleSubmit, formState: { isSubmitting } } = loginForm
 
   async function handleLogin({ email, password }: LoginData) {
-    // Fazer tratativa de erros (retorno do backend)
     await signIn({ email, password })
   }
 
