@@ -2,12 +2,29 @@ import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { commaDecimalNumber } from '@/validations/commaDecimalNumber'
+
 export const dosageCalcSchema = z.object({
-  posologia: z.coerce.number().min(1, 'A posologia é obrigatória'),
-  dosesDiarias: z.coerce.number().min(1, 'As doses diárias são obrigatórias'),
-  peso: z.coerce.number().min(1, 'O peso é obrigatório'),
-  concentracao: z.coerce.number().min(1, 'A concentração é obrigatória'),
-  diluicao: z.coerce.number().min(1, 'A diluição é obrigatória'),
+  posologia: commaDecimalNumber({
+    is_nan_error: 'A posologia precisa ser um número',
+    required_error: 'A posologia é obrigatória',
+  }),
+  dosesDiarias: commaDecimalNumber({
+    is_nan_error: 'As doses diárias precisam ser um número',
+    required_error: 'As doses diárias são obrigatórias',
+  }),
+  peso: commaDecimalNumber({
+    is_nan_error: 'O peso precisa ser um número',
+    required_error: 'O peso é obrigatório',
+  }),
+  concentracao: commaDecimalNumber({
+    is_nan_error: 'A concentração precisa ser um número',
+    required_error: 'A concentração é obrigatória',
+  }),
+  diluicao: commaDecimalNumber({
+    is_nan_error: 'A diluição precisa ser um número',
+    required_error: 'A diluição é obrigatória',
+  }),
 })
 
 export type DosageCalcData = z.infer<typeof dosageCalcSchema>
