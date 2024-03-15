@@ -16,7 +16,7 @@ export function Input({ name, number, unit, ...props}: InputProps) {
     <div className={styles.inputWrapper}>
       <input 
         id={name}
-        {...(number && { type: 'text', inputMode: 'numeric' })}
+        {...(number && { type: 'text', inputMode: 'decimal' })}
         {...register(name)} 
         {...props}
       />
