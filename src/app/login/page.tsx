@@ -6,6 +6,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Form } from '@/components/Form'
+import { RouteLink } from '@/components/RouteLink'
 import { Title } from '@/components/Title'
 import { AuthContext } from '@/contexts/AuthContext'
 
@@ -44,6 +45,8 @@ export default function Login() {
           <Button type='submit' disabled={isSubmitting}>Entrar</Button>
         </Form.Root>
       </FormProvider>
+
+      <RouteLink href="/register">Ainda não tem uma conta?</RouteLink>
     </Container>
   )
 }

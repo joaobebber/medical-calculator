@@ -1,0 +1,8 @@
+.link {
+  /* Box Model */
+  margin-top: 24px;
+  /* Box Style */
+  outline: 0;
+  /* Typography */
+  color: var(--pink-500)
+}
