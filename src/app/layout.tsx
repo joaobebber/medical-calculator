@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <AuthProvider>
-        <body className={poppins.className}>
+        <body className={poppins.className + ' ' + styles.body}>
           <header className={styles.header}>
             <h1>Pediatria</h1>
           </header>
