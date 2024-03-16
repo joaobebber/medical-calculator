@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
+
+import { Button } from '@/components/Button'
  
 interface ErrorProps {
   error: Error & { digest?: string }
@@ -14,14 +16,9 @@ export default function Error({ error, reset }: ErrorProps) {
     <div>
       <h2>Something went wrong!</h2>
 
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
+      <Button onClick={() => reset()}>
         Try again
-      </button>
+      </Button>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { APIError } from '@/errors/APIError'
 
 const baseURL = process.env.BASE_API_URL
 
-export async function get<T = unknown>(path: string): Promise<T | APIError> {
+export async function get<T = unknown>(path: string): Promise<T> {
   const response: Response = await fetch(baseURL + path, {
     method: 'GET',
     cache: 'no-store',
@@ -15,14 +15,14 @@ export async function get<T = unknown>(path: string): Promise<T | APIError> {
     }
   })
 
-  if (!response.ok) return new APIError(await response.json())
+  if (!response.ok) throw new APIError(await response.json())
 
   const data = await response.json() as T
 
   return data
 }
 
-export async function post<T = unknown>(path: string, body: unknown): Promise<T | APIError> {
+export async function post<T = unknown>(path: string, body: unknown): Promise<T> {
   const response: Response = await fetch(baseURL + path, {
     method: 'POST',
     cache: 'no-store',
@@ -33,7 +33,7 @@ export async function post<T = unknown>(path: string, body: unknown): Promise<T 
     body: JSON.stringify(body),
   })
 
-  if (!response.ok) return new APIError(await response.json())
+  if (!response.ok) throw new APIError(await response.json())
 
   const data = await response.json() as T
 

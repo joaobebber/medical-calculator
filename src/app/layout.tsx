@@ -10,8 +10,8 @@ import styles from './styles.module.css'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Medical Calculator',
-  description: 'Seu melhor amigo na rotina de atendimento ❤️‍🩹',
+  title: process.env.APP_TITLE,
+  description: process.env.APP_DESCRIPTION,
 }
 
 interface LayoutProps {

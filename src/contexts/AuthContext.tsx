@@ -4,9 +4,10 @@ import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 import { userProvider } from '@/actions/userProvider'
-import { login } from '@/api/requests/login'
-import { getErrorMessage } from '@/errors/getErrorMessage'
+import { login } from '@/http/login'
+import { AppError } from '@/interfaces/AppError'
 import { User } from '@/interfaces/User'
+import { isAppError } from '@/validations/isAppError'
 
 interface SignInData {
   email: string
@@ -15,8 +16,7 @@ interface SignInData {
 
 interface AuthContextData {
   user: User | null
-  isAuthenticated: boolean
-  signIn: (data: SignInData) => Promise<{ error: string } | undefined>
+  signIn: (data: SignInData) => Promise<AppError | undefined>
 }
 
 interface AuthProviderProps {
@@ -27,10 +27,8 @@ export const AuthContext = createContext({} as AuthContextData)
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
-  const router = useRouter()
 
-  // Not used yet
-  const isAuthenticated = !!user
+  const router = useRouter()
 
   // Load logged user in context
   useEffect(() => {
@@ -44,22 +42,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   // Authenticate user and load in context
-  async function signIn({ email, password }: SignInData) {
-    try {
-      const user = await login({ email, password })
-      
-      setUser(user)
-    } catch (error) {
-      return {
-        error: getErrorMessage(error)
-      }
-    }
+  async function signIn({ email, password }: SignInData): Promise<AppError | undefined> {
+    const result = await login({ email, password })
+
+    if (isAppError(result)) return result
+
+    setUser(user)
 
     router.push('/')
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, signIn }}>
+    <AuthContext.Provider value={{ user, signIn }}>
       {children}
     </AuthContext.Provider>
   )

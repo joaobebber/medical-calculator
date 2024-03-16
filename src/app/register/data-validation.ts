@@ -10,16 +10,15 @@ export const registerSchema = z.object({
     .toLowerCase(),
   password: z.string()
     .min(1, 'A senha é obrigatória')
-    .min(6, 'A senha precisa de no mínimo 6 caracteeres'),
+    .min(6, 'A senha precisa de no mínimo 6 caracteres'),
   confirmPassword: z.string().min(1, 'A confirmação de senha é obrigatória'),
-}).superRefine(
-  ({ confirmPassword, password }, ctx) => {
-    if (confirmPassword !== password) {
-      ctx.addIssue({
-        code: 'custom',
-        message: 'As senhas são diferentes',
-      })
-    }
+}).refine(
+  ({ confirmPassword, password }) => {
+    if (confirmPassword === password) return true
+    return false
+  }, {
+    message: 'As senhas são diferentes',
+    path: ['confirmPassword'],
   }
 )
 

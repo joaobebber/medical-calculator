@@ -1,13 +1,14 @@
 'use client'
 
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 
-import { createUser } from '@/api/requests/users'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Form } from '@/components/Form'
 import { RouteLink } from '@/components/RouteLink'
 import { Title } from '@/components/Title'
+import { createUser } from '@/http/createUser'
 
 import { RegisterData, resolver } from './data-validation'
 
@@ -17,11 +18,17 @@ export default function Register() {
   const { handleSubmit, formState: { isSubmitting } } = registerForm
 
   async function handleRegister({ name, email, password }: RegisterData) {
-    await createUser({
+    const result = await createUser({
       name,
       email,
       password,
     })
+
+    if (result?.error) {
+      toast.error(result.error)
+    } else {
+      toast.success('Cadastro realizado com sucesso! 📝')
+    }
   }
 
   return (
