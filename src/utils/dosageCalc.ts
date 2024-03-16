@@ -1,6 +1,6 @@
 import { DosageCalcData } from '@/app/dosage/data-validation'
 
-export function handleDosageCalc({ concentracao, diluicao, dosesDiarias, peso, posologia }: DosageCalcData) {
+export function dosageCalc({ concentracao, diluicao, dosesDiarias, peso, posologia }: DosageCalcData) {
   const mgPerDose = peso * posologia / dosesDiarias
 
   const mlPerDose = mgPerDose * diluicao / concentracao

@@ -9,27 +9,68 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
+    // Format
+    "comma-dangle": ["error", "always-multiline"],
+    "object-curly-spacing": ["warn", "always"],
     "quotes": ["error", "single"],
     "semi": ["error", "never"],
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "_" }],
-    "@typescript-eslint/no-explicit-any": "off",
-    "react/display-name": "off",
+
+    // Spaces
+    "eol-last": "error",
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "no-multiple-empty-lines": ["error", {
+      "max": 1,
+      "maxEOF": 0,
+      "maxBOF": 0
+    }],
+    "no-trailing-spaces": "error",
+
+    // Syntax + Semantic
+    "no-unused-vars": "off",
     "no-useless-constructor": "off",
+
+    // Typescript ESLint
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+
+    // React
+    "react/display-name": "off",
+
+    // Import Helpers
     "import-helpers/order-imports": [
       "warn",
       {
-        "newlinesBetween": "always",
+        "alphabetize": {
+          "order": "asc",
+          "ignoreCase": true
+        },
         "groups": [
           "module",
-          ["/^@hookform/", "/^@radix-ui/"],
-          "/^@server\/shared/",
+          ["/^@hookform/", "/^@radix-ui/", "/^@prisma/"],
           "/^@/",
           ["parent", "sibling", "index"]
         ],
-        "alphabetize": { "order": "asc", "ignoreCase": true }
+        "newlinesBetween": "always"
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "directory": "./tsconfig.json"
+      }
+    }
   }
 }
