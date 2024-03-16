@@ -7,7 +7,7 @@
   gap: 16px;
 }
 
-.form button {
+.form button[type="submit"] {
   /* Box Model */
   margin-top: 16px;
 }

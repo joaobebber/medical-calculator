@@ -1,12 +1,14 @@
+import { HTMLAttributes, ReactNode } from 'react'
+
 import styles from './styles.module.css'
 
-interface ContainerProps {
-  children: React.ReactNode
+interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode
 }
 
-export function Container({ children }: ContainerProps) {
+export function Container({ children, ...props }: ContainerProps) {
   return (
-    <main className={styles.pageWrapper}>
+    <main {...props} className={styles.pageWrapper + ' ' + props.className}>
       {children}
     </main>
   )

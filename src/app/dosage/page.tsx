@@ -9,7 +9,7 @@ import { Container } from '@/components/Container'
 import { Dialog } from '@/components/Dialog'
 import { Form } from '@/components/Form'
 import { Title } from '@/components/Title'
-import { handleDosageCalc } from '@/utils/handleDosageCalc'
+import { dosageCalc } from '@/utils/dosageCalc'
 
 import { DosageCalcData, resolver } from './data-validation'
 import styles from './page.module.css'
@@ -23,8 +23,8 @@ export default function Dosage() {
 
   const { handleSubmit, formState: { isSubmitting } } = dosageCalcForm
 
-  function dosageCalc(data: DosageCalcData) {
-    const { dosage, period } = handleDosageCalc(data)
+  function handleDosageCalc(data: DosageCalcData) {
+    const { dosage, period } = dosageCalc(data)
 
     setDosage(dosage)
     setPeriod(period)
@@ -34,11 +34,11 @@ export default function Dosage() {
 
   return (
     <Container>
-      <Title text="Dosagem" />
+      <Title>Dosagem</Title>
 
       <FormProvider {...dosageCalcForm}>
         <Form.Root
-          onSubmit={handleSubmit(dosageCalc)}
+          onSubmit={handleSubmit(handleDosageCalc)}
           openDialog={openDialog}
           autoComplete='off'
         >
