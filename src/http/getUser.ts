@@ -12,11 +12,11 @@ interface GetUsersData {
 export async function getUsers(): Promise<AppError | User[]> {
   try {
     const { users } = await get<GetUsersData>('/users')
-  
+
     return users
   } catch (error) {
     return {
-      error: getErrorMessage(error)
+      error: getErrorMessage(error),
     }
   }
 }

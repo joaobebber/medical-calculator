@@ -12,7 +12,7 @@ export async function get<T = unknown>(path: string): Promise<T> {
     cache: 'no-store',
     headers: {
       'Authorization': `Bearer ${cookies().get('@medcalc.token')?.value}`,
-    }
+    },
   })
 
   if (!response.ok) throw new APIError(await response.json())

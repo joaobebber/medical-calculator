@@ -24,17 +24,17 @@ export async function login({ email, password }: LoginRequest): Promise<AppError
       email,
       password,
     })
-  
+
     cookies().set('@medcalc.token', token, {
       maxAge: Number(process.env.TOKEN_MAX_AGE),
     })
-  
+
     const user = await getMe()
-  
+
     return user
   } catch (error) {
     return {
-      error: getErrorMessage(error)
+      error: getErrorMessage(error),
     }
   }
 }

@@ -18,11 +18,11 @@ export async function getMe(): Promise<AppError | User> {
     cookies().set('@medcalc.user.id', user.id, {
       maxAge: Number(process.env.TOKEN_MAX_AGE),
     })
-  
+
     return user
   } catch (error) {
     return {
-      error: getErrorMessage(error)
+      error: getErrorMessage(error),
     }
   }
 }

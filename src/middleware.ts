@@ -1,5 +1,5 @@
 import type { NextRequest } from 'next/server'
- 
+
 // Only applied for private routes
 export function middleware(request: NextRequest) {
   const currentUserId = request.cookies.get('@medcalc.user.id')?.value

@@ -9,15 +9,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   unit?: string
 }
 
-export function Input({ name, number, unit, ...props}: InputProps) {
+export function Input({ name, number, unit, ...props }: InputProps) {
   const { register } = useFormContext()
 
   return (
     <div className={styles.inputWrapper}>
-      <input 
+      <input
         id={name}
         {...(number && { type: 'text', inputMode: 'decimal' })}
-        {...register(name)} 
+        {...register(name)}
         {...props}
       />
       {unit && <span>{unit}</span>}

@@ -21,7 +21,7 @@ export async function createUser({ name, email, password }: CreateUserRequest): 
     })
   } catch (error) {
     return {
-      error: getErrorMessage(error)
+      error: getErrorMessage(error),
     }
   }
 
