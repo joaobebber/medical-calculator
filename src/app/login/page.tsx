@@ -2,6 +2,7 @@
 
 import { useContext } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -21,7 +22,13 @@ export default function Login() {
   const { handleSubmit, formState: { isSubmitting } } = loginForm
 
   async function handleLogin({ email, password }: LoginData) {
-    await signIn({ email, password })
+    const result = await signIn({ email, password })
+
+    if (result?.error) {
+      toast.error(result.error)
+    } else {
+      toast.success('Bem-vinda! 🎉')
+    }
   }
 
   return (

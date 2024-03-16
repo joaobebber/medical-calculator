@@ -3,6 +3,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
+import { APIError } from '@/errors/APIError'
 import { User } from '@/interfaces/User'
 
 import { get, post } from '../methods'
@@ -14,26 +15,44 @@ interface CreateUserProps {
 }
 
 export async function createUser({ name, email, password }: CreateUserProps): Promise<void> {
-  await post('/users', {
+  const response = await post('/users', {
     name,
     email,
     password,
   })
 
+  if (response instanceof APIError) throw new Error(response.message)
+
   redirect('/login')
 }
 
+interface GetUsersData {
+  users: User[]
+}
+
 export async function getUsers(): Promise<User[]> {
-  const users = await get<User[]>('/users')
+  const response = await get<GetUsersData>('/users')
+
+  if (response instanceof APIError) throw new Error(response.message)
+
+  const { users } = response
 
   return users
 }
 
+interface GetMeData {
+  user: User
+}
+
 export async function getMe(): Promise<User> {
-  const user = await get<User>('/users/me')
+  const response = await get<GetMeData>('/users/me')
+
+  if (response instanceof APIError) throw new Error(response.message)
+
+  const { user } = response
 
   cookies().set('@medcalc.user.id', user.id, {
-    maxAge: 20, // 20 seconds (60 * 60 * 24)
+    maxAge: Number(process.env.TOKEN_MAX_AGE),
   })
 
   return user

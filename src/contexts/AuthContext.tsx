@@ -5,6 +5,7 @@ import { ReactNode, createContext, useEffect, useState } from 'react'
 
 import { userProvider } from '@/actions/userProvider'
 import { login } from '@/api/requests/login'
+import { getErrorMessage } from '@/errors/getErrorMessage'
 import { User } from '@/interfaces/User'
 
 interface SignInData {
@@ -15,7 +16,7 @@ interface SignInData {
 interface AuthContextData {
   user: User | null
   isAuthenticated: boolean
-  signIn: (data: SignInData) => Promise<void>
+  signIn: (data: SignInData) => Promise<{ error: string } | undefined>
 }
 
 interface AuthProviderProps {
@@ -27,9 +28,11 @@ export const AuthContext = createContext({} as AuthContextData)
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
   const router = useRouter()
-  
+
+  // Not used yet
   const isAuthenticated = !!user
 
+  // Load logged user in context
   useEffect(() => {
     const provideUser = async () => {
       const user = await userProvider()
@@ -40,10 +43,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     provideUser()
   }, [])
 
+  // Authenticate user and load in context
   async function signIn({ email, password }: SignInData) {
-    const user = await login({ email, password })
-
-    setUser(user)
+    try {
+      const user = await login({ email, password })
+      
+      setUser(user)
+    } catch (error) {
+      return {
+        error: getErrorMessage(error)
+      }
+    }
 
     router.push('/')
   }

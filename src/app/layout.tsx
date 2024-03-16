@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 import { AuthProvider } from '@/contexts/AuthContext'
 
@@ -27,6 +28,8 @@ export default function RootLayout({ children }: LayoutProps) {
           </header>
 
           {children}
+
+          <Toaster position='bottom-right' />
         </body>
       </AuthProvider>
     </html>
