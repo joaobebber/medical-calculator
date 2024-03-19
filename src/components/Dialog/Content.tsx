@@ -1,10 +1,10 @@
-import { HTMLAttributes, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import styles from './styles.module.css'
 
-interface ContentProps extends HTMLAttributes<HTMLDivElement> {}
+interface ContentProps extends DialogPrimitive.DialogContentProps {}
 
 export const Content = forwardRef<HTMLDivElement, ContentProps>(
   ({ children, ...props }, forwardedRef) => {

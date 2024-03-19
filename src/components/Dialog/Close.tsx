@@ -1,8 +1,8 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
-interface CloseProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+interface CloseProps extends DialogPrimitive.DialogCloseProps {}
 
 export const Close = forwardRef<HTMLButtonElement, CloseProps>(
   ({ children, ...props }, forwardedRef) => {

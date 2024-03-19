@@ -1,17 +1,21 @@
-import { ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 
 import styles from './styles.module.css'
 
-interface TitleProps {
-  children: ReactNode
-}
+interface TitleProps extends DialogPrimitive.DialogTitleProps {}
 
-export function Title({ children }: TitleProps) {
-  return (
-    <DialogPrimitive.Title className={styles.title}>
-      {children}
-    </DialogPrimitive.Title>
-  )
-}
+export const Title = forwardRef<HTMLHeadingElement, TitleProps>(
+  ({ children, ...props }, forwardedRef) => {
+    return (
+      <DialogPrimitive.Title
+        {...props}
+        ref={forwardedRef}
+        className={styles.title}
+      >
+        {children}
+      </DialogPrimitive.Title>
+    )
+  }
+)

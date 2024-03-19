@@ -12,7 +12,6 @@ import { Title } from '@/components/Title'
 import { AuthContext } from '@/contexts/AuthContext'
 
 import { LoginData, resolver } from './data-validation'
-import styles from './page.module.css'
 
 export default function Login() {
   const { signIn } = useContext(AuthContext)
@@ -32,7 +31,7 @@ export default function Login() {
   }
 
   return (
-    <Container className={styles.spacing}>
+    <Container>
       <Title>Login</Title>
 
       <FormProvider {...loginForm}>

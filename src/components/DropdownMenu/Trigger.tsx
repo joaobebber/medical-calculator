@@ -1,19 +1,19 @@
 import { forwardRef } from 'react'
 
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 
-interface TriggerProps extends DialogPrimitive.DialogTriggerProps {}
+interface TriggerProps extends DropdownMenuPrimitive.DropdownMenuTriggerProps {}
 
 export const Trigger = forwardRef<HTMLButtonElement, TriggerProps>(
   ({ children, ...props }, forwardedRef) => {
     return (
-      <DialogPrimitive.Trigger
+      <DropdownMenuPrimitive.Trigger
         {...props}
         ref={forwardedRef}
         asChild
       >
         {children}
-      </DialogPrimitive.Trigger>
+      </DropdownMenuPrimitive.Trigger>
     )
   }
 )

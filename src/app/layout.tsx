@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import { Toaster } from 'react-hot-toast'
 
+import { Header } from '@/components/Header'
 import { AuthProvider } from '@/contexts/AuthContext'
 
 import { poppins } from './fonts'
@@ -23,9 +24,7 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <AuthProvider>
         <body className={poppins.className + ' ' + styles.body}>
-          <header className={styles.header}>
-            <h1>Pediatria</h1>
-          </header>
+          <Header />
 
           {children}
 

@@ -4,5 +4,6 @@
   /* Box Style */
   outline: 0;
   /* Typography */
-  color: var(--pink-500)
+  color: var(--pink-500);
+  text-decoration: underline;
 }
