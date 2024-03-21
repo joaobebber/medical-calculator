@@ -39,3 +39,38 @@ export async function post<T = unknown>(path: string, body: unknown): Promise<T>
 
   return data
 }
+
+export async function put<T = unknown>(path: string, body: unknown): Promise<T> {
+  const response: Response = await fetch(baseURL + path, {
+    method: 'PUT',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${cookies().get('@medcalc.token')?.value}`,
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!response.ok) throw new APIError(await response.json())
+
+  const data = await response.json() as T
+
+  return data
+}
+
+export async function patchAvatar<T = unknown>(path: string, body: FormData): Promise<T> {
+  const response: Response = await fetch(baseURL + path, {
+    method: 'PATCH',
+    cache: 'no-store',
+    headers: {
+      'Authorization': `Bearer ${cookies().get('@medcalc.token')?.value}`,
+    },
+    body,
+  })
+
+  if (!response.ok) throw new APIError(await response.json())
+
+  const data = await response.json() as T
+
+  return data
+}

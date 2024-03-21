@@ -58,7 +58,7 @@
         },
         "groups": [
           "module",
-          ["/^@hookform/", "/^@radix-ui/", "/^@prisma/"],
+          ["/^@hookform/", "/^@radix-ui/", "/^@prisma/", "/^@phosphor-icons/"],
           "/^@/",
           ["parent", "sibling", "index"]
         ],

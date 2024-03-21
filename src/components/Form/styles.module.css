@@ -50,6 +50,21 @@
   color: var(--neutral-500);
 }
 
+.imageInputWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.imageInputPreview {
+  margin-bottom: 16px;
+  border-radius: 50%;  
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 .error {
   /* Box Model */
   margin-top: 4px;

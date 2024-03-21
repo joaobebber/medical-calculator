@@ -1,7 +1,40 @@
 .content {
-
+  /* Display and Visibility */
+  display: flex;
+  flex-direction: column;
+  /* Position and Layout */
+  z-index: 150;
+  gap: 12px;
+  /* Box Model */
+  min-width: 40vw;
+  margin: 4px 16px 0 0;
+  padding: 12px;
+  /* Box Style */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  /* Background */
+  background-color: var(--white);
 }
 
-.item {
+.content a {
+  /* Display and Visibility */
+  display: flex;
+  /* Position and Layout */
+  align-items: center;
+  gap: 8px;
+  /* Box Style */
+  outline: none;
+}
 
+.content button {
+  /* Display and Visibility */
+  display: flex;
+  /* Position and Layout */
+  align-items: center;
+  gap: 8px;
+  /* Box Model */
+  width: 100%;
+  /* Box Style */
+  outline: none;
 }

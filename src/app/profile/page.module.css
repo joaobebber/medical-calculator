@@ -1,0 +1,45 @@
+.avatar {
+  /* Box Model */
+  margin-top: 40px;
+  /* Box Style */
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.actionButton {
+  /* Box Model */
+  margin-bottom: 16px;
+}
+
+.name {
+  /* Box Model */
+  margin-top: 16px;
+  /* Typography */
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.inputWrapper {
+  /* Display and Visibility */
+  display: flex;
+  /* Position and Layout */
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Box Model */
+  margin: 32px 0;
+}
+
+.inputDisabled {
+  /* Box Model */
+  width: 280px;
+  height: 40px;
+  padding: 8px 16px;
+  /* Box Style */
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  /* Background */
+  background-color: transparent;
+  /* Typography */
+  font-size: 1rem;
+  color: var(--black);
+}

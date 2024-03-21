@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
+import { logout } from '@/actions/logout'
 import { userProvider } from '@/actions/userProvider'
 import { login } from '@/http/login'
 import { AppError } from '@/interfaces/AppError'
@@ -16,7 +17,9 @@ interface SignInData {
 
 interface AuthContextData {
   user: User | null
+  refreshUser: () => Promise<void>
   signIn: (data: SignInData) => Promise<AppError | undefined>
+  signOut: () => Promise<void>
 }
 
 interface AuthProviderProps {
@@ -32,14 +35,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   // Load logged user in context
   useEffect(() => {
-    const provideUser = async () => {
-      const user = await userProvider()
-
-      if (user) setUser(user)
-    }
-
-    provideUser()
+    refreshUser()
   }, [])
+
+  // Refresh user data
+  async function refreshUser() {
+    const user = await userProvider()
+
+    if (user) setUser(user)
+  }
 
   // Authenticate user and load in context
   async function signIn({ email, password }: SignInData): Promise<AppError | undefined> {
@@ -47,13 +51,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     if (isAppError(result)) return result
 
-    setUser(user)
+    setUser(result)
 
     router.push('/')
   }
 
+  // Remove authentication
+  async function signOut() {
+    await logout()
+
+    router.push('/login')
+  }
+
   return (
-    <AuthContext.Provider value={{ user, signIn }}>
+    <AuthContext.Provider value={{ user, refreshUser, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )

@@ -33,11 +33,7 @@ html {
   outline-style: solid;
 }
 
-a {
+a, button {
   all: unset;
   cursor: pointer;
-}
-
-button {
-  border: none;
 }

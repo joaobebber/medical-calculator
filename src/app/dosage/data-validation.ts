@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { commaDecimalNumber } from '@/validations/commaDecimalNumber'
 
-export const dosageCalcSchema = z.object({
+const dosageCalcSchema = z.object({
   posologia: commaDecimalNumber({
     is_nan_error: 'A posologia precisa ser um número',
     required_error: 'A posologia é obrigatória',

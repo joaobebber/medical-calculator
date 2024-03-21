@@ -2,15 +2,18 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import { List, SignOut, SquaresFour, User } from '@phosphor-icons/react'
+
+import { AuthContext } from '@/contexts/AuthContext'
 
 import { DropdownMenu } from '../DropdownMenu'
 import styles from './styles.module.css'
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false)
+  const { signOut } = useContext(AuthContext)
   const path = usePathname()
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export function Header() {
               </button>
             </DropdownMenu.Trigger>
 
-            <DropdownMenu.Content className={styles.menuContent}>
+            <DropdownMenu.Content>
               <DropdownMenu.Item>
                 <Link href="/">
                   <SquaresFour size={16} weight="bold" />Categorias
@@ -44,15 +47,15 @@ export function Header() {
               </DropdownMenu.Item>
 
               <DropdownMenu.Item>
-                <Link href="#">
+                <Link href="/profile">
                   <User size={16} weight="bold" />Perfil
                 </Link>
               </DropdownMenu.Item>
 
               <DropdownMenu.Item>
-                <Link href="#" className={styles.exitLink}>
+                <button onClick={signOut} className={styles.exitLink}>
                   <SignOut size={16} weight="bold" />Sair
-                </Link>
+                </button>
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

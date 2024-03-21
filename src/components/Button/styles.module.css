@@ -1,4 +1,9 @@
 .button {
+  /* Display and Visibility */
+  display: flex;
+  /* Position and Layout */
+  justify-content: center;
+  align-items: center;
   /* Box Model */
   width: 240px;
   padding: 8px 16px;
