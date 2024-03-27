@@ -12,5 +12,5 @@ export function middleware(request: NextRequest) {
 // Define private routes
 export const config = {
   // Negative declaration to define public routes (exception)
-  matcher: '/((?!register|api|_next/static|favicon.ico|_next/image|.*\\.png$).*)',
+  matcher: '/((?!register|confirm-account|api|_next/static|favicon.ico|_next/image|.*\\.png$).*)',
 }
